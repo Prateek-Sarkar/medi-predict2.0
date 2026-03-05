@@ -1,0 +1,313 @@
+/* ═══════════════════════════════════════════
+   PROFILE PAGE
+   ═══════════════════════════════════════════ */
+
+.prof-page {
+  --c-low: #059669;
+  --c-low-bg: #ecfdf5;
+  --c-mid: #d97706;
+  --c-mid-bg: #fffbeb;
+  --c-high: #dc2626;
+  --c-high-bg: #fef2f2;
+  --c-info: #2563eb;
+  --c-info-bg: #eff6ff;
+}
+
+.prof-layout {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 48px 40px 80px;
+}
+
+/* ─── USER HEADER ─── */
+.prof-user-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.prof-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--brand-light);
+  color: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.prof-user-info h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.prof-since {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.prof-clear-btn {
+  margin-left: auto;
+}
+
+/* ─── STATS ROW ─── */
+.prof-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.prof-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+}
+
+.prof-stat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--brand-light);
+  color: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.prof-stat-val {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.prof-stat-lbl {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 1px;
+}
+
+/* ─── HISTORY HEADER ─── */
+.prof-history-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.prof-history-header h2 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+.prof-mock-badge {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--c-mid);
+  background: var(--c-mid-bg);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+}
+
+/* ─── HISTORY GRID ─── */
+.prof-history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+/* ─── HISTORY CARD ─── */
+.prof-history-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: profFadeUp 0.35s ease both;
+}
+
+.prof-history-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+@keyframes profFadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Top accent */
+.prof-history-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.sev-accent-low::before  { background: var(--c-low); }
+.sev-accent-mid::before  { background: var(--c-mid); }
+.sev-accent-high::before { background: var(--c-high); }
+.sev-accent-info::before { background: var(--c-info); }
+
+.prof-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.prof-card-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.prof-card-img-wrap {
+  height: 120px;
+  background: var(--bg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.prof-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prof-card-findings {
+  margin-bottom: 14px;
+}
+
+.prof-card-findings h4 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+
+.prof-finding-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.prof-finding-row:last-child {
+  border-bottom: none;
+}
+
+.prof-finding-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.prof-finding-conf {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.prof-view-report {
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* ─── EMPTY STATE ─── */
+.prof-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+  background: var(--surface);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-xl);
+}
+
+.prof-empty-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--brand-light);
+  color: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.prof-empty-state h3 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.prof-empty-state p {
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 420px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .prof-layout {
+    padding: 32px 20px 56px;
+  }
+  .prof-user-header {
+    flex-wrap: wrap;
+  }
+  .prof-clear-btn {
+    margin-left: 0;
+    width: 100%;
+  }
+  .prof-stats-row {
+    grid-template-columns: 1fr;
+  }
+  .prof-history-grid {
+    grid-template-columns: 1fr;
+  }
+}

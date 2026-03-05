@@ -1,0 +1,482 @@
+/* ═══════════════════════════════════════════
+   DETECTION PAGE
+   ═══════════════════════════════════════════ */
+
+.det-page {
+  --c-low: #059669;
+  --c-low-bg: #ecfdf5;
+  --c-mid: #d97706;
+  --c-mid-bg: #fffbeb;
+  --c-high: #dc2626;
+  --c-high-bg: #fef2f2;
+  --c-info: #2563eb;
+  --c-info-bg: #eff6ff;
+}
+
+/* ─── HERO ─── */
+.det-hero {
+  padding: 48px 40px 32px;
+  max-width: 1320px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.det-hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand);
+  background: var(--brand-light);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 16px;
+}
+
+.det-hero-label .dot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand);
+}
+
+.det-hero h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+
+.det-hero h1 em {
+  font-style: italic;
+  color: var(--brand);
+}
+
+.det-hero-sub {
+  font-size: 15px;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ─── LAYOUT ─── */
+.det-layout {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 40px 32px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.det-layout.has-result {
+  /* two-column when results are visible */
+}
+
+@media (min-width: 1024px) {
+  .det-layout.has-result {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* center the upload column when there are no results */
+.det-layout:not(.has-result) .det-upload-col {
+  max-width: 760px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ─── UNIFIED UPLOAD CARD ─── */
+.det-upload-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+/* ─── DROPZONE (inside card) ─── */
+.det-dropzone {
+  border: none;
+  border-radius: 0;
+  padding: 48px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.det-dropzone:hover,
+.det-dropzone.drag-active {
+  background: var(--brand-light);
+}
+
+.det-drop-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--brand-light);
+  color: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.det-dropzone h3 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.det-dropzone p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.det-drop-hint {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--bg);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+}
+
+/* ─── PREVIEW (inside card) ─── */
+.det-preview-wrap-inner {
+  overflow: hidden;
+}
+
+.det-preview-img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  display: block;
+  background: var(--bg);
+}
+
+.det-preview-actions {
+  display: flex;
+  gap: 10px;
+  padding: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.det-preview-actions .btn {
+  flex: 1;
+}
+
+.det-spin {
+  animation: detSpin 1s linear infinite;
+}
+
+@keyframes detSpin {
+  100% { transform: rotate(360deg); }
+}
+
+/* ─── ERROR ─── */
+.det-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  margin-top: 12px;
+  background: var(--c-high-bg);
+  color: var(--c-high);
+  border: 1px solid var(--c-high-border);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ─── WHAT TO EXPECT (full-width section) ─── */
+.det-expect-section {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 40px 80px;
+}
+
+.det-expect-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.det-expect-card {
+  padding: 20px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.det-expect-card svg {
+  color: var(--brand);
+  margin-bottom: 10px;
+}
+
+.det-expect-card h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.det-expect-card p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ─── RESULT CARD ─── */
+.det-result-col {
+  animation: fadeUp 0.4s ease both;
+}
+
+.det-result-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.det-result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--c-low-bg);
+}
+
+.det-result-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-low);
+}
+
+.det-result-time {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Warning */
+.det-warning {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: var(--c-mid-bg);
+  color: var(--c-mid);
+  font-size: 12px;
+  font-weight: 500;
+  border-bottom: 1px solid var(--c-mid-border);
+}
+
+/* Primary finding */
+.det-primary-finding {
+  padding: 20px;
+}
+
+.det-finding-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.det-finding-name {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 24px;
+  color: var(--text-primary);
+}
+
+.det-finding-conf {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.det-finding-pct {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.det-prog-bg {
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.det-prog-bg.small {
+  height: 5px;
+  margin-bottom: 0;
+}
+
+.det-prog-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1.2s ease-out;
+}
+
+.sev-fill-low  { background: var(--c-low); }
+.sev-fill-mid  { background: var(--c-mid); }
+.sev-fill-high { background: var(--c-high); }
+.sev-fill-info { background: var(--c-info); }
+
+.det-clinical-note {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  padding: 10px 12px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--brand);
+  margin-bottom: 12px;
+}
+
+.det-learn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--brand);
+  transition: gap 0.2s;
+}
+
+.det-learn-link:hover {
+  gap: 10px;
+}
+
+/* Other predictions */
+.det-other-preds {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+}
+
+.det-other-preds h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+}
+
+.det-other-item {
+  margin-bottom: 12px;
+}
+
+.det-other-item:last-child {
+  margin-bottom: 0;
+}
+
+.det-other-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.det-other-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.det-other-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.det-other-bar-row .det-prog-bg {
+  flex: 1;
+}
+
+.det-other-pct {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Disclaimer */
+.det-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--c-info-bg);
+  color: var(--c-info);
+  font-size: 12px;
+  line-height: 1.5;
+  border-top: 1px solid var(--border);
+}
+
+.det-disclaimer svg {
+  min-width: 14px;
+  margin-top: 1px;
+}
+
+/* Actions */
+.det-result-actions {
+  display: flex;
+  gap: 10px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+}
+
+.det-result-actions .btn {
+  flex: 1;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .det-hero {
+    padding: 32px 20px 20px;
+  }
+  .det-layout {
+    padding: 0 20px 32px;
+  }
+  .det-expect-section {
+    padding: 0 20px 48px;
+  }
+  .det-expect-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  body * { visibility: hidden; }
+  .det-result-card, .det-result-card * { visibility: visible; }
+  .det-result-card { position: absolute; left: 0; top: 0; width: 100%; box-shadow: none; border: none; }
+}
