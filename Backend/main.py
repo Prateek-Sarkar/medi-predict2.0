@@ -7,12 +7,12 @@ from predict import predict_image
 app = FastAPI()
 
 # ── CORS ──
-# Explicit allowed origins for local dev + Vercel production.
-# Replace the vercel.app URL with your actual deployed frontend domain.
+# Explicit allowed origins for local dev + Vercel production + HF Spaces.
 allowed_origins = [
     "http://localhost:5173",           # Vite dev server
     "http://localhost:5174",           # Vite alternate port
     "https://medi-predict2-0.vercel.app",  # ← replace with your real Vercel URL
+    "https://prateek-sarkar-medipredict-api.hf.space",  # HF Spaces direct
 ]
 
 app.add_middleware(
