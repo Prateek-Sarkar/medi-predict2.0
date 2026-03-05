@@ -11,8 +11,10 @@ app = FastAPI()
 allowed_origins = [
     "http://localhost:5173",           # Vite dev server
     "http://localhost:5174",           # Vite alternate port
-    "https://medi-predict2-0.vercel.app",  # ← replace with your real Vercel URL
-    "https://prateek-sarkar-medipredict-api.hf.space",  # HF Spaces direct
+    "https://medi-predict2-0.vercel.app",
+    "https://medi-predict2-0-git-main-prateeks-projects-7e7a82b3.vercel.app",
+    "https://medi-predict2-0-kljeeq2rw-prateeks-projects-7e7a82b3.vercel.app",
+    "https://prats0007-medipredict-api.hf.space",
 ]
 
 app.add_middleware(
