@@ -32,11 +32,6 @@ venv/
 env/
 *.egg-info/
 
-# Model files (large)
-*.h5
-*.hdf5
-*.keras
-
 # Dataset
 dataset/
 
