@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      // In development, forward /api requests to the local FastAPI server
+      // In dev mode, proxy /api → local FastAPI so the app works identically
       '/api': {
         target: 'http://localhost:8000',
         changeOrigin: true,

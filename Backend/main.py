@@ -6,11 +6,19 @@ from predict import predict_image
 
 app = FastAPI()
 
-# Allow frontend to access backend
+# ── CORS ──
+# Explicit allowed origins for local dev + Vercel production.
+# Replace the vercel.app URL with your actual deployed frontend domain.
+allowed_origins = [
+    "http://localhost:5173",           # Vite dev server
+    "http://localhost:5174",           # Vite alternate port
+    "https://medi-predict2-0.vercel.app",  # ← replace with your real Vercel URL
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # allow frontend requests
-    allow_credentials=False, # Changed to false to allow ["*"] origins as per FastAPI/Starlette CORS docs
+    allow_origins=allowed_origins,
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
