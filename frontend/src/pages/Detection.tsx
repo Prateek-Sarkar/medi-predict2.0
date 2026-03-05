@@ -8,33 +8,12 @@ import {
 import type { ApiResponse } from '../api/predictAPI';
 import './Detection.css';
 
-const severityMap: Record<string, { level: string; label: string }> = {
-    'Cataract': { level: 'mid', label: 'Moderate' },
-    'Central Serous Chorioretinopathy': { level: 'mid', label: 'Moderate' },
-    'Conjunctivitis': { level: 'low', label: 'Low' },
-    'Diabetic Retinopathy': { level: 'high', label: 'High' },
-    'Disc Edema': { level: 'high', label: 'High' },
-    'Eyelid': { level: 'low', label: 'Low' },
-    'Glaucoma': { level: 'high', label: 'High' },
-    'Healthy_Eye': { level: 'info', label: 'Normal' },
-    'Healthy_Eye1': { level: 'info', label: 'Normal' },
-    'Macular Scar': { level: 'high', label: 'High' },
-    'Myopia': { level: 'low', label: 'Low' },
-    'Pterygium': { level: 'low', label: 'Low' },
-    'Retinal Detachment': { level: 'high', label: 'High' },
-    'Hypertensive Retinopathy': { level: 'mid', label: 'Moderate' },
-    'Age-Related Macular Degeneration': { level: 'high', label: 'High' },
-    'Ocular Hypertension': { level: 'mid', label: 'Moderate' },
-};
-
-function getSeverity(disease: string) {
-    const key = disease.replace(/_/g, ' ');
-    for (const [k, v] of Object.entries(severityMap)) {
-        if (key.toLowerCase().includes(k.toLowerCase()) || k.toLowerCase().includes(key.toLowerCase())) {
-            return v;
-        }
-    }
-    return { level: 'info', label: 'Unknown' };
+/** Map confidence % → a severity label that matches the result */
+function getSeverity(confidence: number): { level: string; label: string } {
+    if (confidence >= 80) return { level: 'high', label: 'High' };
+    if (confidence >= 50) return { level: 'mid', label: 'Moderate' };
+    if (confidence >= 20) return { level: 'low', label: 'Low' };
+    return { level: 'info', label: 'Minimal' };
 }
 
 export function Detection() {
@@ -106,7 +85,7 @@ export function Detection() {
     };
 
     const topPrediction = result?.top_predictions?.[0];
-    const topSeverity = topPrediction ? getSeverity(topPrediction.disease) : null;
+    const topSeverity = topPrediction ? getSeverity(topPrediction.confidence) : null;
 
     return (
         <div className="det-page page-enter">
@@ -217,7 +196,7 @@ export function Detection() {
                                 <div className="det-other-preds">
                                     <h4>Other Predictions</h4>
                                     {result.top_predictions.slice(1).map((pred, i) => {
-                                        const sev = getSeverity(pred.disease);
+                                        const sev = getSeverity(pred.confidence);
                                         return (
                                             <div key={i} className="det-other-item">
                                                 <div className="det-other-info">
