@@ -57,7 +57,11 @@ export function Detection() {
             const { predictImage } = await import('../api/predictAPI');
             const data = await predictImage(file);
             setAnalysisTime(performance.now() - startTime);
-            setResult(data);
+            if (data.status === 'error') {
+                setError(data.message || 'The image could not be classified. Please upload a valid eye image.');
+            } else {
+                setResult(data);
+            }
         } catch (err: unknown) {
             console.error(err);
             setError('Failed to connect to the prediction server. Please ensure the backend is running.');
