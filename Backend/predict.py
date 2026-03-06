@@ -73,7 +73,7 @@ def predict_image(image_path):
     if eye_prob < threshold:
         return {
             "status": "error",
-            "message": "Please upload a valid fundus eye image."
+            "message": "Please upload a valid fundus eye or facial eye image."
         }
 
     # -------- Step 2: Disease prediction --------
