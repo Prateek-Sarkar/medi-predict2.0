@@ -12,6 +12,8 @@ allowed_origins = [
     "http://localhost:5173",           # Vite dev server
     "http://localhost:5174",           # Vite alternate port
     "https://medi-predict2-0.vercel.app",
+    "https://medi-predict20-main.vercel.app",
+    "https://frontend-mu-one-24.vercel.app",
     "https://medi-predict2-0-git-main-prateeks-projects-7e7a82b3.vercel.app",
     "https://medi-predict2-0-kljeeq2rw-prateeks-projects-7e7a82b3.vercel.app",
     "https://prats0007-medipredict-api.hf.space",
@@ -20,6 +22,8 @@ allowed_origins = [
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
+    # Allow all Vercel preview and production subdomains for this frontend.
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

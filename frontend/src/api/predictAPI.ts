@@ -12,7 +12,7 @@ export interface ApiResponse {
 
 // In dev the Vite proxy rewrites /api → localhost:8000, so the relative
 // path works.  In production VITE_API_URL points to the Render backend.
-const API_BASE = import.meta.env.VITE_API_URL ?? '';
+const API_BASE = (import.meta.env.VITE_API_URL || 'https://medi-predict2-0-1.onrender.com').replace(/\/$/, '');
 
 export const predictImage = async (file: File): Promise<ApiResponse> => {
     const formData = new FormData();
